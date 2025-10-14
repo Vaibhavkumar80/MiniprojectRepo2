@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elegant Gems - Edit Profile</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      padding: 20px;
+    }
+    .edit-container {
+      max-width: 400px;
+      background: rgba(255, 250, 245, 0.85);
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    h3 {
+      text-align: center;
+      color: #b8860b;
+    }
+    input, select, textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 10px auto;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      width: 95%;
+      padding: 12px;
+      margin-top: 15px;
+      background-color: #b8860b;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button:hover {
+      background-color: #8b6508;
+    }
+    .back-home {
+      text-align: center;
+      display: block;
+      margin: 0 auto 20px auto;
+      color: #b8860b;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    .back-home:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-home">&larr; Back to Home</a>
+  <div class="edit-container">
+    <h3>Edit Your Profile</h3>
+    <form id="editForm" onsubmit="return false;">
+      <input type="text" id="editName" placeholder="Full Name" required />
+      <input type="email" id="editEmail" placeholder="Email" required />
+      <select id="editGender" required>
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+      <input type="tel" id="editMobile" placeholder="Mobile Number" pattern="[0-9]{10}" title="10-digit mobile number" required />
+      <input type="number" id="editAge" placeholder="Age" min="1" max="120" required />
+      <textarea id="editAddress" placeholder="Address" rows="3" required></textarea>
+      <button type="submit" onclick="saveChanges()">Save Changes</button>
+    </form>
+  </div>
+
+  <script>
+    // Load saved user data on page load and pre-fill form
+    window.onload = function() {
+      const user = JSON.parse(localStorage.getItem("userData"));
+      if (!user) {
+        alert("No user data found. Please register or login first.");
+        window.location.href = "index.html";
+        return;
+      }
+      document.getElementById('editName').value = user.name || '';
+      document.getElementById('editEmail').value = user.email || '';
+      document.getElementById('editGender').value = user.gender || '';
+      document.getElementById('editMobile').value = user.mobile || '';
+      document.getElementById('editAge').value = user.age || '';
+      document.getElementById('editAddress').value = user.address || '';
+    };
+
+    // Save updated info back to localStorage
+    function saveChanges() {
+      const updatedUser = {
+        name: document.getElementById('editName').value.trim(),
+        email: document.getElementById('editEmail').value.trim(),
+        gender: document.getElementById('editGender').value,
+        mobile: document.getElementById('editMobile').value.trim(),
+        age: document.getElementById('editAge').value,
+        address: document.getElementById('editAddress').value.trim()
+      };
+
+      if (!updatedUser.name || !updatedUser.email || !updatedUser.gender || !updatedUser.mobile || !updatedUser.age || !updatedUser.address) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // mobile number validation
+      if (!/^\d{10}$/.test(updatedUser.mobile)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+      }
+
+      localStorage.setItem("userData", JSON.stringify(updatedUser));
+      alert("Profile updated successfully!");
+      window.location.href = "index.html"; // or redirect wherever you prefer
+    }
+  </script>
+</body>
+</html>

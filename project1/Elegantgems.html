@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elegant Gems - Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
+
+    header {
+      background-color: rgba(184, 134, 11, 0.9);
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      background-color: rgba(245, 222, 179, 0.9);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 12px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      color: #b8860b;
+      text-decoration: underline;
+    }
+
+    .main-content {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: rgba(255, 250, 245, 0.85);
+      margin: 60px auto;
+      width: 70%;
+      border-radius: 15px;
+      box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+    }
+
+    .main-content h1 {
+      color: #b8860b;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .main-content p {
+      font-size: 18px;
+      color: #000;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .btn {
+      background-color: #b8860b;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background-color: #8b6508;
+    }
+
+    footer {
+      background-color: rgba(245, 222, 179, 0.9);
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .login-box {
+      display: none;
+      background: white;
+      border: 2px solid #b8860b;
+      padding: 25px;
+      border-radius: 10px;
+      width: 300px;
+      position: fixed;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+
+    .login-box input, .login-box select, .login-box textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-box button {
+      width: 95%;
+      padding: 10px;
+      background-color: #b8860b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .login-box button:hover {
+      background-color: #8b6508;
+    }
+
+    .close-btn {
+      float: right;
+      color: #b8860b;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Product section */
+    .product {
+      background: #fff8dc;
+      padding: 20px;
+      border-radius: 15px;
+      width: 250px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .dashboard {
+      display: none;
+      background: #fff;
+      border: 2px solid #b8860b;
+      padding: 25px;
+      border-radius: 10px;
+      width: 300px;
+      position: fixed;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+      z-index: 10;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Elegant gems.jpg" width="120" alt="Elegant Gems Logo">
+     Elegant Gems
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Gold</a>
+    <a href="#">Diamond</a>
+    <a href="#">Silver</a>
+    <a href="#" onclick="showLogin()">Login</a>
+    <a href="./Register/register.html">Register</a>
+    <a href="./add-jewelery/addjewelery.html">Add New Jewelry</a>
+
+  </nav>
+
+  <div class="main-content">
+    <h1>Welcome to Elegant Gems</h1>
+    <p>Discover exquisite gold, diamond, and silver jewelry collections crafted for every occasion. Shine with elegance and style.</p>
+    <button class="btn" onclick="showRegister()">Start Shopping</button>
+  </div>
+
+  <!-- Registration Box -->
+  <div id="registerBox" class="login-box">
+    <span class="close-btn" onclick="closeAll()">✖</span>
+    <h3 style="text-align:center; color:#b8860b;">User Registration</h3>
+    <form id="registerForm">
+      <input type="text" id="regName" placeholder="Full Name" required><br>
+      <input type="email" id="regEmail" placeholder="Email" required><br>
+      <input type="password" id="regPassword" placeholder="Create Password" required><br>
+      <input type="password" id="regConfirm" placeholder="Confirm Password" required><br>
+      <select id="regGender">
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select><br>
+      <input type="number" id="regAge" placeholder="Age" required><br>
+      <textarea id="regAddress" placeholder="Address"></textarea><br>
+      <button type="button" onclick="registerUser()">Register</button>
+    </form>
+  </div>
+
+  <!-- Login Box -->
+  <div id="loginBox" class="login-box">
+    <span class="close-btn" onclick="closeAll()">✖</span>
+    <h3 style="text-align:center; color:#b8860b;">User Login</h3>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Enter Email" required><br>
+      <input type="password" id="loginPassword" placeholder="Enter Password" required><br>
+      <button type="button" onclick="loginUser()">Login</button>
+    </form>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="dashboard">
+    <span class="close-btn" onclick="closeAll()">✖</span>
+    <h3 style="color:#b8860b;">User Details</h3>
+    <div id="userDetails"></div>
+    <button onclick="editDetails()">Edit Details</button>
+    <button onclick="deleteAccount()">Delete Account</button>
+  </div>
+
+  <!-- Product Section -->
+  <section style="display:flex; justify-content:center; flex-wrap:wrap; gap:30px; margin:50px auto; width:80%;">
+    <div class="product">
+      <img src="gold.jpg" alt="Gold Bracelet">
+      <h3 style="color:#b8860b;">Gold Bracelet</h3>
+      <p>Pure 22K Gold Collection</p>
+      <p><strong>Price:</strong> ₹49,999</p>
+      <button class="btn">View Details</button>
+    </div>
+
+    <div class="product">
+      <img src="diamond.jpg" alt="Diamond Earring">
+      <h3 style="color:#b8860b;">Diamond Earring</h3>
+      <p>Shine Bright with Premium Cut</p>
+      <p><strong>Price:</strong> ₹1,25,000</p>
+      <button class="btn">View Details</button>
+    </div>
+
+    <div class="product">
+      <img src="silver.jpg" alt="Silver Earring">
+      <h3 style="color:#b8860b;">Silver Earring</h3>
+      <p>Elegant 925 Sterling Silver</p>
+      <p><strong>Price:</strong> ₹7,499</p>
+      <button class="btn">View Details</button>
+    </div>
+
+    <div class="product">
+      <img src="platinum.jpg" alt="Platinum Ring">
+      <h3 style="color:#b8860b;">Platinum Ring</h3>
+      <p>Timeless Strength & Style</p>
+      <p><strong>Price:</strong> ₹2,49,999</p>
+      <button class="btn">View Details</button>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Elegant Gems | All Rights Reserved
+  </footer>
+
+  <script>
+    function showRegister() {
+      closeAll();
+      document.getElementById('registerBox').style.display = 'block';
+    }
+
+    function showLogin() {
+      closeAll();
+      document.getElementById('loginBox').style.display = 'block';
+    }
+
+    function closeAll() {
+      document.getElementById('registerBox').style.display = 'none';
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'none';
+    }
+
+    // Registration Logic
+    function registerUser() {
+      const user = {
+        name: document.getElementById('regName').value,
+        email: document.getElementById('regEmail').value,
+        password: document.getElementById('regPassword').value,
+        confirm: document.getElementById('regConfirm').value,
+        gender: document.getElementById('regGender').value,
+        age: document.getElementById('regAge').value,
+        address: document.getElementById('regAddress').value
+      };
+
+      if (user.password !== user.confirm) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      localStorage.setItem("userData", JSON.stringify(user));
+      alert("Registration successful! Please login now.");
+      closeAll();
+      showLogin();
+    }
+
+    // Login Logic
+    function loginUser() {
+      const email = document.getElementById("loginEmail").value;
+      const pass = document.getElementById("loginPassword").value;
+      const user = JSON.parse(localStorage.getItem("userData"));
+
+      if (user && user.email === email && user.password === pass) {
+        alert("Welcome, " + user.name + "! Login successful ✨");
+        closeAll();
+        window.location.href ="edit.html";
+      } else {
+        alert("Invalid email or password!");
+      }
+    }
+
+    function showDashboard(user) {
+      closeAll();
+      document.getElementById('dashboard').style.display = 'block';
+      document.getElementById('userDetails').innerHTML = `
+        <p><strong>Name:</strong> ${user.name}</p>
+        <p><strong>Email:</strong> ${user.email}</p>
+        <p><strong>Gender:</strong> ${user.gender}</p>
+        <p><strong>Age:</strong> ${user.age}</p>
+        <p><strong>Address:</strong> ${user.address}</p>
+      `;
+    }
+
+    function editDetails() {
+      const user = JSON.parse(localStorage.getItem("userData"));
+      const newAddress = prompt("Enter new address:", user.address);
+      const newAge = prompt("Enter new age:", user.age);
+      if (newAddress) user.address = newAddress;
+      if (newAge) user.age = newAge;
+      localStorage.setItem("userData", JSON.stringify(user));
+      alert("Details updated!");
+      showDashboard(user);
+    }
+
+    function deleteAccount() {
+      localStorage.removeItem("userData");
+      alert("Your account has been deleted.");
+      closeAll();
+    }
+  </script>
+</body>
+</html>

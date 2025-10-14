@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elegant Gems - Register</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      padding: 20px;
+    }
+    .register-container {
+      background: rgba(255, 250, 245, 0.85);
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    }
+    h3 {
+      text-align: center;
+      color: #b8860b;
+    }
+    input, select, textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 16px;
+    }
+    button {
+      width: 95%;
+      padding: 12px;
+      background-color: #b8860b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 15px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button:hover {
+      background-color: #8b6508;
+    }
+    .back-home {
+      display: block;
+      margin: 0 auto 20px auto;
+      text-align: center;
+      text-decoration: none;
+      color: #b8860b;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .back-home:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="../Elegantgems.html" class="back-home">&larr; Back to Home</a>
+
+  <div class="register-container">
+    <h3>User Registration</h3>
+    <form id="registerForm" onsubmit="return false;">
+      <input type="text" id="regName" placeholder="Full Name" required />
+      <input type="email" id="regEmail" placeholder="Email" required />
+      <input type="password" id="regPassword" placeholder="Create Password" required />
+      <input type="password" id="regConfirm" placeholder="Confirm Password" required />
+      
+      <select id="regGender" required>
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+
+      <input type="tel" id="regMobile" placeholder="Mobile Number" pattern="[0-9]{10}" title="10-digit mobile number" required />
+
+      <input type="number" id="regAge" placeholder="Age" min="1" max="120" required />
+
+      <textarea id="regAddress" placeholder="Address" rows="3" required></textarea>
+
+      <button type="button" onclick="registerUser()">Register</button>
+    </form>
+  </div>
+
+  <script>
+    function registerUser() {
+      const user = {
+        name: document.getElementById('regName').value.trim(),
+        email: document.getElementById('regEmail').value.trim(),
+        password: document.getElementById('regPassword').value,
+        confirm: document.getElementById('regConfirm').value,
+        gender: document.getElementById('regGender').value,
+        mobile: document.getElementById('regMobile').value.trim(),
+        age: document.getElementById('regAge').value,
+        address: document.getElementById('regAddress').value.trim()
+      };
+
+      // Password match check
+      if (user.password !== user.confirm) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      // Mobile number validation
+      if (!/^\d{10}$/.test(user.mobile)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+      }
+
+      localStorage.setItem("userData", JSON.stringify(user));
+      alert("Registration successful! Please login now.");
+      window.location.href = "index.html"; // redirect to home/login
+    }
+  </script>
+</body>
+</html>
